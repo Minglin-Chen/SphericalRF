@@ -35,19 +35,19 @@ cmake --build build --config RelWithDebInfo -j 16
 
 * **Mip-NeRF-360**
   
-  * Step 1: download from [link]([mip-NeRF 360](https://jonbarron.info/mipnerf360/)), then unzip at the *dataset* folder
+  * Step 1: download from [mip-NeRF 360](https://jonbarron.info/mipnerf360/), then unzip at the *dataset* folder
   
   * Step 2: run `cd script/utils && convert_llff2nerf_mipnerf360.bat`
 
 * **Light-Field** & **Tanks-and-Temples**
   
-  * Step 1: download from [link]([Kai-46/nerfplusplus: improves over nerf in 360 capture of unbounded scenes (github.com)](https://github.com/Kai-46/nerfplusplus)), then unzip at the *dataset* folder
+  * Step 1: download from [Kai-46/nerfplusplus: improves over nerf in 360 capture of unbounded scenes (github.com)](https://github.com/Kai-46/nerfplusplus), then unzip at the *dataset* folder
   
   * Step 2: run `cd script/utils && convert_nerfpp2nerf_lf.bat && convert_nerfpp2nerf_tat.bat`
 
 * **NeRF-Synthetic**
   
-  - download from [link]([NeRF: Neural Radiance Fields (matthewtancik.com)](https://www.matthewtancik.com/nerf)), then unzip at the *dataset* folder
+  - download from [NeRF: Neural Radiance Fields (matthewtancik.com)](https://www.matthewtancik.com/nerf), then unzip at the *dataset* folder
 
 ### Run
 ```bash
