@@ -1,0 +1,75 @@
+{
+	"samlper": {
+		"warping_type": "ERP",
+		"aabb_scale": 2e6,
+		"use_grid": true,
+		"init_grid_with_mask": false,
+		"grid_size": 256,
+		"num_cascades": 1,
+		"ema_decay": 0.95,
+		"grid_distribution_type": "WarpedSpace_Exp",
+		"maximum_marching_steps": 1024,
+		"cone_angle_constant": 0,
+		"near_distance": 0.1,
+		"far_distance": 1e6,
+		"sampling_type": "Disparity",
+		"snap_to_pixel_centers_in_training": true,
+		"snap_to_pixel_centers_in_rendering": true,
+		"min_optical_thickness": 0.01
+	},
+
+	"network": {
+		"encoding": {
+			"otype": "HashGrid",
+			"n_levels": 8,
+			"n_features_per_level": 4,
+			"log2_hashmap_size": 19,
+			"base_resolution": 16
+		},
+		"network": {
+			"otype": "FullyFusedMLP",
+			"activation": "ReLU",
+			"output_activation": "None",
+			"n_neurons": 64,
+			"n_hidden_layers": 1
+		},
+		"dir_encoding": {
+			"otype": "SphericalHarmonics",
+			"degree": 4
+		},
+		"rgb_network": {
+			"otype": "FullyFusedMLP",
+			"activation": "ReLU",
+			"output_activation": "None",
+			"n_neurons": 64,
+			"n_hidden_layers": 2
+		}
+	},
+
+	"render": {
+		"train_with_random_bg_color": true,
+		"train_in_linear_color": false,
+		"transmittance_threshold": 0.0001
+	},
+
+	"loss": "SmoothL1",
+
+	"optimizer": {
+		"otype": "Ema",
+		"decay": 0.95,
+		"nested": {
+			"otype": "ExponentialDecay",
+			"decay_start": 40000,
+			"decay_interval": 20000,
+			"decay_base": 0.33,
+			"nested": {
+				"otype": "Adam",
+				"learning_rate": 1e-2,
+				"beta1": 0.9,
+				"beta2": 0.99,
+				"epsilon": 1e-15,
+				"l2_reg": 1e-6
+			}
+		}
+	}
+}
